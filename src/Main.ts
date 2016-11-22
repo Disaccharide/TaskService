@@ -123,16 +123,31 @@ class Main extends egret.DisplayObjectContainer {
         this.addChild(map);
 
         var Dpanel_1: DialoguePanel = new DialoguePanel("请寻找草精。");
-        var Dpanel_2: DialoguePanel = new DialoguePanel("啊哈！被你发现了！");
+        var Dpanel_2: DialoguePanel = new DialoguePanel("请帮我砍掉");
         var NPC_1: NPC = new NPC("NPC_1", "01_01_png", 875, 75, Dpanel_1);
         var NPC_2: NPC = new NPC("NPC_2", "02_01_png", 25, 800, Dpanel_2);
-        var task_0: Task = new Task("000", "寻找任务");
+
+        Dpanel_1.linkNPC = NPC_1;
+        Dpanel_2.linkNPC = NPC_2;
+
+        var task_0: Task = new Task("000", "寻找任务", new NPCTalkTaskCondition());
         task_0.fromNpcId = "NPC_1";
         task_0.toNpcId = "NPC_2";
-        task_0.desc = "请接受孤魂的任务。";
+        task_0.desc = "先跟孤魂对话，再跟草精对话";
+        task_0.NPCTaskTalk = "请跟草精对话，他看起来需要帮助";
+        task_0.total = 1;
         task_0.status = TaskStatus.ACCEPTABLE;
 
+        var task_1: Task = new Task("001", "杀怪任务", new KillMonsterTaskCondition());
+        task_1.fromNpcId = "NPC_2";
+        task_1.toNpcId = "NPC_2";
+        task_1.desc = "再次跟草精对话，接任务后击杀怪物";
+        task_1.NPCTaskTalk = "请帮我砍10棵树";
+        task_1.total = 10;
+        task_1.status = TaskStatus.UNACCEPTABLE;
+
         TaskService.getInstance().addTask(task_0);
+        TaskService.getInstance().addTask(task_1);
         var mainPanel: TaskPanel = new TaskPanel(50, 0);
         TaskService.getInstance().addObserver(mainPanel);
         TaskService.getInstance().addObserver(NPC_1);
@@ -143,8 +158,17 @@ class Main extends egret.DisplayObjectContainer {
         this.addChild(Dpanel_1);
         this.addChild(Dpanel_2);
 
+
         TaskService.getInstance().notify(TaskService.getInstance().getTaskByCustomRule());
-        console.log(TaskService.getInstance().taskList["000"]);
+        Dpanel_1.updateViewByTask(TaskService.getInstance().getTaskByCustomRule());
+        Dpanel_2.updateViewByTask(TaskService.getInstance().getTaskByCustomRule());
+
+        var monster_1: MockKillMonsterButton = new MockKillMonsterButton("tree_png","001");
+        this.addChild(monster_1);
+        monster_1.body.x = 275;
+        monster_1.body.y = 600;
+        monster_1.body.width = 133;
+        monster_1.body.height = 130;
 
         var chara: Character = new Character(this);
         this.addChild(chara);

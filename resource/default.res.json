@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,egret_icon_png,description_json,map_png,run_01_png,run_02_png,run_03_png,run_04_png,run_05_png,run_06_png,run_07_png,run_08_png,stand_01_png,stand_02_png,stand_03_png,stand_04_png,stand_05_png,stand_06_png,stand_07_png,stand_08_png,stand_09_png,stand_10_png,map01_png,map02_png,finish_png,from_png,to_png,02_01_png,02_02_png,02_03_png,02_04_png,02_05_png,02_06_png,02_07_png,02_08_png,02_09_png,01_01_png,01_02_png,01_03_png,01_04_png,01_05_png,01_06_png,01_07_png,01_08_png,01_09_png,01_10_png",
+			"keys": "bg_jpg,egret_icon_png,description_json,map_png,run_01_png,run_02_png,run_03_png,run_04_png,run_05_png,run_06_png,run_07_png,run_08_png,stand_01_png,stand_02_png,stand_03_png,stand_04_png,stand_05_png,stand_06_png,stand_07_png,stand_08_png,stand_09_png,stand_10_png,map01_png,map02_png,finish_png,from_png,to_png,02_01_png,02_02_png,02_03_png,02_04_png,02_05_png,02_06_png,02_07_png,02_08_png,02_09_png,01_01_png,01_02_png,01_03_png,01_04_png,01_05_png,01_06_png,01_07_png,01_08_png,01_09_png,01_10_png,tree_png",
 			"name": "preload"
 		}
 	],
@@ -235,6 +235,11 @@
 			"name": "01_10_png",
 			"type": "image",
 			"url": "assets/NPC_1/01_10.png"
+		},
+		{
+			"name": "tree_png",
+			"type": "image",
+			"url": "assets/tree.png"
 		}
 	]
 }
